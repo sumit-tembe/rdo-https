@@ -128,7 +128,7 @@ We are using haproxy for this.
 
 Download and Replace haproxy.cfg with ⇒  haproxy.cfg
 
-Note: Update <fqdn>, <ip> in haproxy.cfg.
+	Update <fqdn>, <ip> in haproxy.cfg.
 
 2] Update ports for services:
 
