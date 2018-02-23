@@ -106,14 +106,15 @@ Replace with OS_AUTH_URL=https://<fqdn>:5000/v3 in keystonerc_admin.
 	
 8] Update all services conf files to use https endpoints for keystone and uncomment insecure=true.Use fqdn when specifying endpoints.
 
-Eg."/etc/nova/nova.conf"
+	"/etc/nova/nova.conf"
 	[keystone_authtoken]
 	auth_uri=https://<fqdn>:5000/
 	auth_url=https:/<fqdn>:35357
 	insecure=true
 
 Note: Update keystone endpoint based on valued in conf files.
-Eg. auth_uri=http://1.2.3.4:5000/ ⇒  auth_uri=https://<fqdn>:500
+
+	auth_uri=http://1.2.3.4:5000/ ⇒  auth_uri=https://<fqdn>:500
 
 Do same for placement api.
 
