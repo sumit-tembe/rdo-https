@@ -74,9 +74,7 @@ then add your own ca file in to that cacert.pem
 
 	$source keystonerc_admin
 	$openstack endpoint create --region <Region> --enable keystone admin https://<fqdn>:35357/v3 
-
 	$openstack endpoint create --region <region> --enable keystone internal https://<fqdn>:5000/v3
-
 	$openstack endpoint create --region <region> --enable keystone public https://<fqdn>:5000/v3
 
 4] Delete older keystone endpoints:
@@ -93,13 +91,16 @@ then add your own ca file in to that cacert.pem
 	keyfile = /etc/pki/tls/private/openstack.key
 
 6] Restart httpd and keystone service:
+
 	$service httpd restart
 	#Install Openstack-utils
 	$yum install openstack-utils -y
 	$openstack-service restart
+
 7] Update OS_AUTH_URL in keystonerc_admin and test keystone:
 
 Replace with OS_AUTH_URL=https://<fqdn>:5000/v3 in keystonerc_admin.
+
 	$ source keystonerc_admin
 	$ openstack endpoint list
 	
