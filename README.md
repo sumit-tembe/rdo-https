@@ -3,35 +3,34 @@ Setup RDO Openstack with HTTPS
 
 #Prerequisites :
 Execute below commands on controller :-
-$ mkdir -p  /etc/pki/tls/certs
-$ mkdir -p  /etc/pki/tls/private
-$ mkdir -p /root/packstackca/certs
-$ openssl req -x509 -sha256 -newkey rsa:2048 -keyout openstack.key -out openstack.crt -days 1024 -nodes
+	$ mkdir -p  /etc/pki/tls/certs
+	$ mkdir -p  /etc/pki/tls/private
+	$ mkdir -p /root/packstackca/certs
+	$ openssl req -x509 -sha256 -newkey rsa:2048 -keyout openstack.key -out openstack.crt -days 1024 -nodes
 
 Note: Enter fqdn as hostname
 
-$ cp openstack.crt /etc/pki/tls/certs/
-$ cp openstack.key /etc/pki/tls/private/
-$ ln -s /etc/pki/tls/certs/ssl_vnc.crt /root/packstackca/certs/$(hostname  -I | cut -f1 -d' ')ssl_vnc.crt
+	$ cp openstack.crt /etc/pki/tls/certs/
+	$ cp openstack.key /etc/pki/tls/private/
+	$ ln -s /etc/pki/tls/certs/ssl_vnc.crt /root/packstackca/certs/$(hostname  -I | cut -f1 -d' ')ssl_vnc.crt
 
 #Generate Answer file:
-$packstack --gen-answer-file=youranwserfile.packstack
+	$packstack --gen-answer-file=youranwserfile.packstack
 
 #Modify generated answer file:
 
 # Disable Demo Version
-CONFIG_PROVISION_DEMO=n
+	CONFIG_PROVISION_DEMO=n
 
 # Set KeyStone Admin Password or Admin user Password
-CONFIG_KEYSTONE_ADMIN_PW=<password>
+	CONFIG_KEYSTONE_ADMIN_PW=<password>
 
 # Config Horizon over SSL
-CONFIG_HORIZON_SSL=y
-
-CONFIG_SSL_CERT_DIR=/root/packstackca/
+	CONFIG_HORIZON_SSL=y
+	CONFIG_SSL_CERT_DIR=/root/packstackca/
 
 #Install Ocata: 
-nohup packstack --answer-file=youranwserfile.packstack &
+	nohup packstack --answer-file=youranwserfile.packstack &
 
 
 
