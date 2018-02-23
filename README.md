@@ -2,7 +2,7 @@
 Setup RDO Openstack with HTTPS
 
 # Prerequisites :
-Execute below commands on controller :-
+
 	$ mkdir -p  /etc/pki/tls/certs
 	$ mkdir -p  /etc/pki/tls/private
 	$ mkdir -p /root/packstackca/certs
