@@ -1,7 +1,7 @@
 # rdo-https
 Setup RDO Openstack with HTTPS
 
-#Prerequisites :
+# Prerequisites :
 Execute below commands on controller :-
 	$ mkdir -p  /etc/pki/tls/certs
 	$ mkdir -p  /etc/pki/tls/private
@@ -14,10 +14,10 @@ Note: Enter fqdn as hostname
 	$ cp openstack.key /etc/pki/tls/private/
 	$ ln -s /etc/pki/tls/certs/ssl_vnc.crt /root/packstackca/certs/$(hostname  -I | cut -f1 -d' ')ssl_vnc.crt
 
-#Generate Answer file:
+# Generate Answer file:
 	$packstack --gen-answer-file=youranwserfile.packstack
 
-#Modify generated answer file:
+# Modify generated answer file:
 
 # Disable Demo Version
 	CONFIG_PROVISION_DEMO=n
@@ -29,13 +29,13 @@ Note: Enter fqdn as hostname
 	CONFIG_HORIZON_SSL=y
 	CONFIG_SSL_CERT_DIR=/root/packstackca/
 
-#Install Ocata: 
+# Install Ocata: 
 	nohup packstack --answer-file=youranwserfile.packstack &
 
 
 
 
-#Post Installation :
+# Post Installation :
 
 A] Enable https for keystone:
 
@@ -43,12 +43,12 @@ A] Enable https for keystone:
 
 Update "/etc/httpd/conf.d/10-keystone_wsgi_admin.conf" file. Add below in <VirtualHost *:35357> tag:-
 
-  ## Server aliases
+  # Server aliases
   ServerAlias <ip>
   ServerAlias <fqdn>
   ServerAlias localhost
 
-  ## SSL directives
+  # SSL directives
   SSLEngine on
   SSLCertificateFile      "/etc/pki/tls/certs/openstack.crt"
   SSLCertificateKeyFile   "/etc/pki/tls/private/openstack.key"
@@ -142,7 +142,7 @@ Note: Update <fqdn>, <ip> in haproxy.cfg.
 
 
 
-References:
+# References:
 
-https://blog-rcritten.rhcloud.com/?p=5
-http://liuhongjiang.github.io/hexotech/2016/12/23/setup-your-own-ca/#for-python-requests-to-add-ca
+	https://blog-rcritten.rhcloud.com/?p=5
+	http://liuhongjiang.github.io/hexotech/2016/12/23/setup-your-own-ca/#for-python-requests-to-add-ca
